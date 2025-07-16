@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audit Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 18px;
+    }
+    li {
+      margin: 5px 0;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fire Safety Audit Result</h1>
+
+  {% if result_image %}
+    <img src="{{ result_image }}?t={{ time }}" alt="Prediction Result">
+  {% endif %}
+
+  <h2>Detected Items:</h2>
+  {% if labels and labels|length > 0 %}
+    <ul>
+      {% for label in labels %}
+        <li>✅ {{ label }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p><strong>⚠️ No fire safety equipment detected.</strong></p>
+  {% endif %}
+
+  <a href="/">🔁 Try Another</a>
+</body>
+</html>
